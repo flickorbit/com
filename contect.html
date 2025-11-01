@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="icon" href="logo.png" type="image/x-icon"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #fff; /* White border */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* White shadow */
+            background-color: #000; /* Black background */
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff; /* White header text */
+        }
+        .form-container label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+            color: #fff; /* White text */
+        }
+        .form-container input,
+        .form-container textarea {
+            width: calc(100% - 20px); /* Adjust width to account for padding */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #fff; /* White border */
+            border-radius: 4px;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+        }
+        .form-container input[type="submit"] {
+            width: 100%; /* Make the button width the same as the text areas */
+            background-color: #ff0000; /* Red background */
+            color: #fff; /* White text */
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #cc0000; /* Darker red on hover */
+        }
+        .form-container textarea {
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="home.html">
+        <div class="header">
+            <img src="logo.png" alt="Flick Orbit Logo">
+        </div>
+    </a>
+
+
+<div class="form-container">
+    <h2>Contact Us</h2>
+        <form action="https://formsubmit.co/flickorbitmovie@gmail.com" method="POST">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="3" required></textarea>
+
+        <input type="hidden" name="_template" value="table">
+
+        <input type="submit" value="Submit">
+
+        <input type="hidden" name="_next" value="thanks.html">
+    </form>
+</div>
+
+<h3>Please feel free to submit any inquiries, suggestions, or feedback here. We regularly monitor our emails and welcome your input, including movie requests or any issues you encounter on our website. Your feedback helps us improve and address any concerns promptly.</h2>
+
+</body>
+</html>

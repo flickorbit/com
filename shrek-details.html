@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrek | Movie Details | Flick Orbit</title>
+    <link rel="icon" href="logo.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff4757;
+            --primary-hover: #ff6b81;
+            --dark-bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-light: #e0e0e0;
+            --text-muted: #aaaaaa;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-center {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .logo-center img {
+            width: 100px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-center img:hover {
+            transform: scale(1.1);
+        }
+
+        .details-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .movie-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .movie-title {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+            background: linear-gradient(to right, var(--primary), #ff8a9b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .movie-year {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .movie-poster {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 10px;
+            margin: 0 auto 30px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .movie-poster:hover {
+            transform: scale(1.03);
+        }
+
+        .movie-info {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .synopsis {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stars {
+            color: gold;
+        }
+
+        @media (max-width: 768px) {
+            .movie-title {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html">
+        <div class="logo-center">
+            <img src="logo.png" alt="Flick Orbit Logo">
+        </div>
+    </a>
+    
+    <div class="details-container">
+        <div class="movie-header">
+            <h1 class="movie-title">Shrek</h1>
+            <p class="movie-year">2001 ‧ Comedy/Fantasy</p>
+        </div>
+        
+        <img src="shreak_movie_tumbnail.png" alt="La La Land" class="movie-poster">
+        
+        <div class="movie-info">
+            <div class="info-item">
+                <span class="info-label">Synopsis</span>
+                <p class="synopsis">
+                    <em>Shrek</em> is a 2001 American animated fantasy comedy film directed by Andrew Adamson and Vicky Jenson. The story follows Shrek, a reclusive and grumpy ogre who finds his swamp overrun by fairy tale creatures exiled by the diminutive and tyrannical Lord Farquaad. In a deal to reclaim his land, Shrek agrees to rescue Princess Fiona from a dragon-guarded tower for Farquaad, leading to an unexpected adventure. 
+                </p>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Director</span>
+                <p>Andrew Adamson, Vicky Jenson</p>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Cast</span>
+                <p>Mike Myers, Eddie Murphy, Cameron Diaz, John Lithgow</p>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Rating</span>
+                <div class="rating">
+                    <span>7.9/10 (IMDb)</span>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <span class="info-label">Runtime</span>
+                <p>90 minutes</p>
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <a href="shrek.html" class="btn btn-primary">
+                <i class="fas fa-play"></i> Watch Now
+            </a>
+            <a href="home.html" class="btn btn-outline">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var devtools = false;
+        var element = new Image();
+        element.__defineGetter__('id', function() {
+            devtools = true;
+            window.location.href = 'about:blank';
+        });
+        console.log('%c', element);
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.key === 's' || event.key === 'S')) {
+                event.preventDefault();
+            }
+            if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+                event.preventDefault();
+            }
+        });
+
+        (function() {
+            setInterval(() => {
+                debugger;
+            }, 100);
+        })();
+    </script>
+</body>
+</html>

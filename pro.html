@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Content Portal</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e293b;
+            --light: #f8fafc;
+            --error: #dc2626;
+            --success: #16a34a;
+            --glass-bg: rgba(30, 41, 59, 0.9);
+            --blur-amount: 12px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary);
+            color: var(--light);
+            background-image: url('https://source.unsplash.com/random/1920x1080/?security,lock');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .backdrop {
+            background-color: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .auth-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .secure-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .logo {
+            height: 80px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.5));
+        }
+        
+        h1 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--light);
+        }
+        
+        input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.6);
+            user-select: none;
+        }
+        
+        .password-toggle:hover {
+            color: var(--light);
+        }
+        
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.875rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        
+        button:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .error-message {
+            color: var(--error);
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            display: none;
+        }
+        
+        .success-message {
+            color: var(--success);
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            display: none;
+        }
+        
+        .content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            padding: 2rem 0;
+        }
+        
+        .expired-message {
+            display: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--blur-amount));
+            padding: 2.5rem;
+            border-radius: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .expired-message h2 {
+            color: var(--error);
+            margin-bottom: 1rem;
+        }
+        
+        .admin-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--blur-amount));
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .admin-panel h2 {
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+        
+        .admin-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .shake {
+            animation: shake 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="backdrop">
+        <div class="container">
+            <!-- Admin Configuration Panel (hidden by default) -->
+            <div id="adminPanel" class="admin-panel" style="display: none;">
+                <h2>🔒 Admin Configuration</h2>
+                <div class="admin-form">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" placeholder="Enter new password">
+                        </div>
+                        <div class="input-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="expirationDate">Expiration Date</label>
+                            <input type="date" id="expirationDate">
+                        </div>
+                        <div class="input-group">
+                            <label for="maxAttempts">Max Attempts</label>
+                            <input type="number" id="maxAttempts" min="1" max="10" value="3">
+                        </div>
+                    </div>
+                    <button id="saveConfig">Save Configuration</button>
+                    <div id="configSuccess" class="success-message">Configuration saved successfully!</div>
+                    <div id="configError" class="error-message"></div>
+                </div>
+            </div>
+            
+            <!-- Expiration Message -->
+            <div id="expiredMessage" class="expired-message">
+                <h2>⏳ Access Expired</h2>
+                <p>This content is no longer available as the access period has ended.</p>
+                <p>Please contact the administrator for further assistance.</p>
+            </div>
+            
+            <!-- Authentication Section -->
+            <div id="authSection" class="auth-container">
+                <div class="secure-card">
+                    <img src="https://via.placeholder.com/80x80?text=🔒" alt="Secure Logo" class="logo">
+                    <h1>Secure Content Portal</h1>
+                    
+                    <div class="input-group">
+                        <label for="passwordInput">Enter Access Password</label>
+                        <input type="password" id="passwordInput" placeholder="Enter secure password" autocomplete="off">
+                        <span class="password-toggle" id="togglePassword">👁️</span>
+                    </div>
+                    
+                    <button id="authButton">Authenticate</button>
+                    <div id="errorMsg" class="error-message"></div>
+                </div>
+            </div>
+            
+            <!-- Protected Content Section -->
+            <div id="content" class="content">
+                <div class="secure-card">
+                    <h1>🔐 Secure Content</h1>
+                    <p>This content is protected and only accessible with the correct password.</p>
+                    <p>Your session will automatically expire after a period of inactivity.</p>
+                    
+                    <div id="secureContent">
+                        <!-- Your protected content goes here -->
+                        <h2 style="margin-top: 2rem;">Confidential Information</h2>
+                        <p style="margin-top: 1rem;">This is your highly sensitive, password-protected content that no one can access without proper authentication.</p>
+                        
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem; border-left: 4px solid var(--primary);">
+                            <h3>Security Features:</h3>
+                            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                                <li style="margin-bottom: 0.5rem;">Password protection with expiration</li>
+                                <li style="margin-bottom: 0.5rem;">Limited login attempts</li>
+                                <li style="margin-bottom: 0.5rem;">Automatic session expiration</li>
+                                <li style="margin-bottom: 0.5rem;">No client-side password storage</li>
+                                <li>Secure configuration options</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <button id="logoutButton" style="margin-top: 2rem;">Lock Content</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secure JavaScript Implementation -->
+    <script>
+        // Secure Configuration Management
+        class SecureConfig {
+            constructor() {
+                // Default configuration (will be overridden by saved config)
+                this.config = {
+                    password: this.hashPassword("SecureDefault123!"), // Hashed default password
+                    expirationDate: this.getFutureDate(30), // 30 days from now
+                    maxAttempts: 3,
+                    lockoutTime: 300000, // 5 minutes in milliseconds
+                    sessionDuration: 1800000 // 30 minutes in milliseconds
+                };
+                
+                this.loadConfig();
+            }
+            
+            // Get a date in the future (default 30 days)
+            getFutureDate(days = 30) {
+                const date = new Date();
+                date.setDate(date.getDate() + days);
+                return date;
+            }
+            
+            // Simple hash function (in a real application, use proper password hashing)
+            hashPassword(password) {
+                return btoa(unescape(encodeURIComponent(password)));
+            }
+            
+            // Load configuration from localStorage
+            loadConfig() {
+                try {
+                    const savedConfig = localStorage.getItem('secureConfig');
+                    if (savedConfig) {
+                        const parsed = JSON.parse(savedConfig);
+                        // Merge with default config
+                        this.config = {
+                            ...this.config,
+                            ...parsed,
+                            // Ensure expirationDate is a Date object
+                            expirationDate: new Date(parsed.expirationDate || this.config.expirationDate)
+                        };
+                    }
+                } catch (e) {
+                    console.error("Error loading config:", e);
+                }
+            }
+            
+            // Save configuration to localStorage
+            saveConfig(newConfig) {
+                try {
+                    // Merge with existing config
+                    this.config = {
+                        ...this.config,
+                        ...newConfig,
+                        // Hash the password before saving
+                        password: newConfig.password ? this.hashPassword(newConfig.password) : this.config.password
+                    };
+                    
+                    // Convert to serializable format
+                    const toSave = {
+                        ...this.config,
+                        expirationDate: this.config.expirationDate.toISOString()
+                    };
+                    
+                    localStorage.setItem('secureConfig', JSON.stringify(toSave));
+                    return true;
+                } catch (e) {
+                    console.error("Error saving config:", e);
+                    return false;
+                }
+            }
+            
+            // Check if current date is after expiration
+            isExpired() {
+                return new Date() > new Date(this.config.expirationDate);
+            }
+            
+            // Verify password (hashes input before comparing)
+            verifyPassword(input) {
+                return this.hashPassword(input) === this.config.password;
+            }
+        }
+
+        // Main Application
+        class SecureApp {
+            constructor() {
+                this.config = new SecureConfig();
+                this.state = {
+                    attempts: 0,
+                    isLocked: false,
+                    sessionTimeout: null,
+                    adminMode: false
+                };
+                
+                this.initElements();
+                this.initEventListeners();
+                this.checkInitialState();
+            }
+            
+            initElements() {
+                this.elements = {
+                    // Auth elements
+                    passwordInput: document.getElementById('passwordInput'),
+                    togglePassword: document.getElementById('togglePassword'),
+                    authButton: document.getElementById('authButton'),
+                    errorMsg: document.getElementById('errorMsg'),
+                    authSection: document.getElementById('authSection'),
+                    
+                    // Content elements
+                    content: document.getElementById('content'),
+                    logoutButton: document.getElementById('logoutButton'),
+                    
+                    // Expiration elements
+                    expiredMessage: document.getElementById('expiredMessage'),
+                    
+                    // Admin elements
+                    adminPanel: document.getElementById('adminPanel'),
+                    newPassword: document.getElementById('newPassword'),
+                    confirmPassword: document.getElementById('confirmPassword'),
+                    expirationDate: document.getElementById('expirationDate'),
+                    maxAttempts: document.getElementById('maxAttempts'),
+                    saveConfig: document.getElementById('saveConfig'),
+                    configSuccess: document.getElementById('configSuccess'),
+                    configError: document.getElementById('configError')
+                };
+            }
+            
+            initEventListeners() {
+                // Auth events
+                this.elements.authButton.addEventListener('click', () => this.authenticate());
+                this.elements.togglePassword.addEventListener('click', () => this.togglePasswordVisibility());
+                this.elements.passwordInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !this.state.isLocked) {
+                        this.authenticate();
+                    }
+                });
+                
+                // Content events
+                this.elements.logoutButton.addEventListener('click', () => this.endSession());
+                
+                // Admin events
+                this.elements.saveConfig.addEventListener('click', () => this.saveConfiguration());
+                
+                // Special admin access (hidden feature)
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === '#' && e.ctrlKey && e.shiftKey) {
+                        this.toggleAdminMode();
+                    }
+                });
+            }
+            
+            checkInitialState() {
+                // Check if page has expired
+                if (this.config.isExpired()) {
+                    this.showExpiredMessage();
+                    return;
+                }
+                
+                // Set initial admin panel state
+                this.elements.expirationDate.valueAsDate = new Date(this.config.config.expirationDate);
+                this.elements.maxAttempts.value = this.config.config.maxAttempts;
+            }
+            
+            togglePasswordVisibility() {
+                const input = this.elements.passwordInput;
+                input.type = input.type === 'password' ? 'text' : 'password';
+            }
+            
+            authenticate() {
+                if (this.state.isLocked || this.config.isExpired()) return;
+                
+                const enteredPassword = this.elements.passwordInput.value;
+                
+                if (!enteredPassword) {
+                    this.showError("Please enter a password");
+                    return;
+                }
+                
+                if (this.config.verifyPassword(enteredPassword)) {
+                    this.handleSuccessfulAuth();
+                } else {
+                    this.handleFailedAuth();
+                }
+            }
+            
+            handleSuccessfulAuth() {
+                // Hide auth section, show content
+                this.elements.authSection.style.display = 'none';
+                this.elements.content.style.display = 'block';
+                this.elements.errorMsg.style.display = 'none';
+                
+                // Clear password field
+                this.elements.passwordInput.value = '';
+                
+                // Reset attempt counter
+                this.state.attempts = 0;
+                
+                // Set session timeout
+                this.state.sessionTimeout = setTimeout(() => {
+                    this.endSession();
+                }, this.config.config.sessionDuration);
+            }
+            
+            handleFailedAuth() {
+                this.state.attempts++;
+                const remainingAttempts = this.config.config.maxAttempts - this.state.attempts;
+                
+                // Show error with remaining attempts
+                this.showError(`Invalid password. ${remainingAttempts > 0 ? 
+                    `Attempts remaining: ${remainingAttempts}` : 
+                    'No attempts remaining'}`);
+                
+                // Shake animation for error
+                this.elements.passwordInput.classList.add('shake');
+                setTimeout(() => {
+                    this.elements.passwordInput.classList.remove('shake');
+                }, 500);
+                
+                // Clear password field
+                this.elements.passwordInput.value = '';
+                this.elements.passwordInput.focus();
+                
+                // Check if we've reached max attempts
+                if (remainingAttempts <= 0) {
+                    this.lockSystem();
+                }
+            }
+            
+            lockSystem() {
+                this.state.isLocked = true;
+                this.elements.authButton.disabled = true;
+                this.elements.passwordInput.disabled = true;
+                
+                this.showError(`System locked. Please try again in ${this.config.config.lockoutTime / 60000} minutes.`);
+                
+                // Unlock after timeout
+                setTimeout(() => {
+                    this.state.isLocked = false;
+                    this.state.attempts = 0;
+                    this.elements.authButton.disabled = false;
+                    this.elements.passwordInput.disabled = false;
+                    this.elements.errorMsg.style.display = 'none';
+                    this.elements.passwordInput.focus();
+                }, this.config.config.lockoutTime);
+            }
+            
+            endSession() {
+                clearTimeout(this.state.sessionTimeout);
+                
+                this.elements.content.style.display = 'none';
+                this.elements.authSection.style.display = 'block';
+                
+                // Clear password field
+                this.elements.passwordInput.value = '';
+                this.elements.passwordInput.focus();
+            }
+            
+            showError(message) {
+                this.elements.errorMsg.textContent = message;
+                this.elements.errorMsg.style.display = 'block';
+            }
+            
+            showExpiredMessage() {
+                this.elements.authSection.style.display = 'none';
+                this.elements.content.style.display = 'none';
+                this.elements.expiredMessage.style.display = 'block';
+            }
+            
+            toggleAdminMode() {
+                this.state.adminMode = !this.state.adminMode;
+                this.elements.adminPanel.style.display = this.state.adminMode ? 'block' : 'none';
+                
+                if (this.state.adminMode) {
+                    this.elements.newPassword.value = '';
+                    this.elements.confirmPassword.value = '';
+                    this.elements.expirationDate.valueAsDate = new Date(this.config.config.expirationDate);
+                    this.elements.maxAttempts.value = this.config.config.maxAttempts;
+                }
+            }
+            
+            saveConfiguration() {
+                // Validate password match if changed
+                if (this.elements.newPassword.value && this.elements.newPassword.value !== this.elements.confirmPassword.value) {
+                    this.elements.configError.textContent = "Passwords do not match";
+                    this.elements.configError.style.display = 'block';
+                    this.elements.configSuccess.style.display = 'none';
+                    return;
+                }
+                
+                // Prepare new config
+                const newConfig = {
+                    maxAttempts: parseInt(this.elements.maxAttempts.value) || 3,
+                    expirationDate: new Date(this.elements.expirationDate.value)
+                };
+                
+                // Only update password if changed
+                if (this.elements.newPassword.value) {
+                    newConfig.password = this.elements.newPassword.value;
+                }
+                
+                // Save the configuration
+                if (this.config.saveConfig(newConfig)) {
+                    this.elements.configSuccess.style.display = 'block';
+                    this.elements.configError.style.display = 'none';
+                    
+                    // Hide success message after 3 seconds
+                    setTimeout(() => {
+                        this.elements.configSuccess.style.display = 'none';
+                        this.toggleAdminMode();
+                    }, 3000);
+                } else {
+                    this.elements.configError.textContent = "Error saving configuration";
+                    this.elements.configError.style.display = 'block';
+                }
+            }
+        }
+
+        // Initialize the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new SecureApp();
+        });
+    </script>
+</body>
+</html>

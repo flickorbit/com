@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Quiet Place: Day One | Flick Orbit</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff0000;
+            --primary-dark: #cc0000;
+            --black: #000000;
+            --black-light: #1a1a1a;
+            --white: #ffffff;
+            --gray: #e0e0e0;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            --shadow-hover: 0 8px 30px rgba(255, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Logo */
+        .logo-center {
+            text-align: center;
+            padding: 2.5rem 0;
+            position: relative;
+        }
+
+        .logo-center img {
+            width: 90px;
+            height: auto;
+            transition: var(--transition);
+            filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.5));
+        }
+
+        .logo-center:hover img {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* Movie Header */
+        .movie-header {
+            background: var(--black-light);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .movie-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255,0,0,0.15) 0%, transparent 70%);
+        }
+
+        .movie-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .movie-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .movie-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .movie-year {
+            font-size: 1.2rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .movie-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .movie-tag {
+            background: rgba(255, 0, 0, 0.2);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        /* Video Container */
+        .video-container {
+            width: 100%;
+            margin-bottom: 3rem;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transform: translateY(0);
+            transition: var(--transition);
+            aspect-ratio: 16/9;
+            position: relative;
+        }
+
+        .video-container:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,0,0,0.1) 0%, transparent 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 1.2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: var(--transition);
+        }
+
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Divider */
+        .divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: var(--black-light);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23ff0000" stroke-width="0.5" opacity="0.05"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .trust-section-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .trust-section h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .trust-section h2 {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+        }
+
+        .trust-section h2 i {
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        .trust-section p {
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .trust-section strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .footer p {
+            margin: 0.8rem 0;
+        }
+
+        .footer a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            color: var(--primary);
+        }
+
+        /* Scrollbar */
+        body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        /* Floating Action Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+            transition: var(--transition);
+            z-index: 100;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 0 35px rgba(255, 0, 0, 0.7);
+        }
+
+        .floating-btn i {
+            color: var(--white);
+            font-size: 1.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .movie-title {
+                font-size: 2.5rem;
+            }
+            
+            .movie-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .trust-section {
+                padding: 2rem;
+            }
+            
+            .trust-section h1 {
+                font-size: 2rem;
+            }
+            
+            .floating-btn {
+                width: 60px;
+                height: 60px;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="logo-link">
+        <div class="logo-center">
+            <img src="logo.png" alt="Flick Orbit Logo">
+        </div>
+    </a>
+    
+    <div class="container">
+        <div class="movie-header">
+            <h1 class="movie-title">A Quiet Place: Day One</h1>
+            <div class="movie-meta">
+                <p class="movie-year">
+                    <i class="fas fa-calendar-alt"></i> 2024
+                </p>
+                <p class="movie-rating">
+                    <i class="fas fa-star"></i> 6.3/10
+                </p>
+                <span class="movie-tag">
+                    <i class="fas fa-tag"></i> Horror/Sci-fi 
+                </span>
+                <span class="movie-tag">
+                    <i class="fas fa-clock"></i> 1h 39m
+                </span>
+            </div>
+        </div>
+        
+        <div class="video-container">
+            <iframe 
+                src="https://drive.google.com/file/d/1w4us8YwhVpNGABzXX80S4micuaLJvuAz/preview" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <div class="button-group">
+            <button class="btn btn-outline" onclick="window.location.href='home.html';">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            <button class="btn btn-primary" onclick="window.location.href='aquietplacedayone.html';">
+                <i class="fas fa-play"></i> Watch Now
+            </button>
+        </div>
+        
+        <hr class="divider">
+        
+        <div class="trust-section">
+            <div class="trust-section-content">
+                <h1>Only Trust the Official Website</h1>
+                <h2><i class="fas fa-heart"></i> We Appreciate You</h2>
+                <p>
+                    Imagine watching your favorite movies without any interruptions—no annoying ads, no pop-ups, and no distractions. With <strong>Flick Orbit</strong>, we provide you with the ultimate movie-watching experience. Our platform offers a wide selection of high-quality films and shows, all available with seamless streaming. You won't have to worry about buffering, glitches, or those frustrating moments when you're forced to skip over ads.
+                </p>
+                <p>
+                    Whether you're watching alone, with friends, or with family, Flick Orbit ensures that every movie night is perfect. We believe that watching movies should be a relaxing and enjoyable experience, so we've designed our website to give you just that—pure, uninterrupted entertainment. Explore our collection, find your next favorite film, and immerse yourself in cinematic bliss, all at the click of a button. It's time to experience the way movies were meant to be watched—without any hassle, and completely free of charge.
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Designed & Developed by <a href="#" target="_blank">Kestin Han</a> - Myanmar Coding</p>
+            <p>© 2025 <strong>Flick Orbit</strong>. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <div class="floating-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Security measures
+            document.addEventListener('contextmenu', event => event.preventDefault());
+            
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'F12' || 
+                    (event.ctrlKey && event.shiftKey && event.key === 'I') || 
+                    (event.ctrlKey && event.key === 'u')) {
+                    event.preventDefault();
+                }
+            });
+            
+            // Anti-debugging
+            function checkDebugger() {
+                const startTime = performance.now();
+                debugger;
+                const endTime = performance.now();
+                if (endTime - startTime > 100) {
+                    window.location.href = 'about:blank';
+                }
+            }
+            
+            setInterval(checkDebugger, 1000);
+            
+            // Button animations
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Scroll animations
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.movie-header, .video-container, .trust-section');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animation
+            const animatedElements = document.querySelectorAll('.movie-header, .video-container, .trust-section');
+            animatedElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>

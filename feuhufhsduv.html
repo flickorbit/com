@@ -1,0 +1,20 @@
+<?php
+// 1. Start session and check authentication
+session_start();
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+    header("Location: index.php?error=Access denied");
+    exit();
+}
+
+// 2. Your existing HTML content (now protected)
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Protected Content</title>
+</head>
+<body>
+    <h1>Welcome, Paid User!</h1>
+    <!-- Your protected content here -->
+</body>
+</html>

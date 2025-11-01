@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Flick Orbit</title>
+    <link rel="icon" href="logo.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff4757;
+            --primary-hover: #ff6b81;
+            --dark-bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-light: #e0e0e0;
+            --text-muted: #aaaaaa;
+            --section-spacing: 3rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-container img {
+            width: 50px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover img {
+            transform: rotate(15deg);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), #ff8a9b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .privacy-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 6rem 5% 4rem;
+        }
+
+        .privacy-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .privacy-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        .privacy-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-content {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+        }
+
+        .section-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background-color: #111;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), #ff8a9b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-about {
+            max-width: 300px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-newsletter p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #222;
+            color: white;
+        }
+
+        .newsletter-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-hover);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+
+            .privacy-container {
+                padding-top: 8rem;
+            }
+
+            .privacy-title {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="mainHeader">
+        <a href="home.html" class="logo-container">
+            <img src="logo.png" alt="Flick Orbit Logo">
+            <span class="logo-text">Flick Orbit</span>
+        </a>
+        <nav class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="new.html">New Releases</a>
+            <a href="favorites.html">My Movies</a>
+        </nav>
+    </header>
+
+    <main class="privacy-container">
+        <h1 class="privacy-title">Privacy Policy</h1>
+        
+        <div class="privacy-section">
+            <h2 class="section-title">1. Introduction</h2>
+            <div class="section-content">
+                <p>Welcome to Flick Orbit. We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our streaming service.</p>
+                <p>By accessing or using our service, you agree to the terms of this Privacy Policy. If you do not agree with our policies and practices, please do not use our service.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2 class="section-title">2. Information We Collect</h2>
+            <div class="section-content">
+                <p>We collect several types of information from and about users of our service, including:</p>
+                <ul>
+                    <li><strong>Personal Information:</strong> Name, email address, payment information, and other contact details when you create an account or make a purchase.</li>
+                    <li><strong>Usage Data:</strong> Information about how you interact with our service, including movies watched, search queries, and device information.</li>
+                    <li><strong>Technical Data:</strong> IP address, browser type, operating system, and other technical information about your device.</li>
+                    <li><strong>Cookies:</strong> We use cookies and similar tracking technologies to enhance your experience and analyze service usage.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2 class="section-title">3. How We Use Your Information</h2>
+            <div class="section-content">
+                <p>We use the information we collect for various purposes, including:</p>
+                <ul>
+                    <li>To provide and maintain our streaming service</li>
+                    <li>To process your transactions and manage your account</li>
+                    <li>To personalize your experience and recommend content</li>
+                    <li>To improve our service and develop new features</li>
+                    <li>To communicate with you about updates, promotions, and service-related announcements</li>
+                    <li>To monitor and analyze usage patterns and trends</li>
+                    <li>To detect, prevent, and address technical issues or fraudulent activities</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2 class="section-title">4. Sharing of Information</h2>
+            <div class="section-content">
+                <p>We may share your information in the following situations:</p>
+                <ul>
+                    <li><strong>Service Providers:</strong> With third-party vendors who perform services on our behalf, such as payment processing, data analysis, and customer support.</li>
+                    <li><strong>Legal Requirements:</strong> When required by law or to respond to legal process, protect our rights, or ensure the safety of our users.</li>
+                    <li><strong>Business Transfers:</strong> In connection with any merger, sale of company assets, or acquisition of all or a portion of our business.</li>
+                </ul>
+                <p>We do not sell your personal information to third parties for their marketing purposes.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2 class="section-title">5. Data Security</h2>
+            <div class="section-content">
+                <p>We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These measures include encryption, access controls, and secure server infrastructure.</p>
+                <p>However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2 class="section-title">6. Your Rights and Choices</h2>
+            <div class="section-content">
+                <p>Depending on your location, you may have certain rights regarding your personal information, including:</p>
+                <ul>
+                    <li>The right to access, update, or delete your information</li>
+                    <li>The right to opt-out of marketing communications</li>
+                    <li>The right to restrict or object to certain processing activities</li>
+                    <li>The right to data portability</li>
+                </ul>
+                <p>You can manage many of these preferences through your account settings or by contacting us directly.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2 class="section-title">7. Children's Privacy</h2>
+            <div class="section-content">
+                <p>Our service is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2 class="section-title">8. Changes to This Policy</h2>
+            <div class="section-content">
+                <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2 class="section-title">9. Contact Us</h2>
+            <div class="section-content">
+                <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                <ul>
+                    <li>By email: flickorbitmovie@gmail.com</li>
+                    <li>By visiting our contact page</li>
+                </ul>
+                <p><strong>Last Updated:</strong> January 1, 2026</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="footer-logo">Flick Orbit</div>
+                <p>Your premier destination for unlimited movie streaming. Watch what you love, when you want, without any interruptions.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="new.html">New Releases</a></li>
+                    <li><a href="favorites.html">My List</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Information</h3>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Flick Orbit. All Rights Reserved.</p>
+            <p>Designed & Developed by <a href="https://myanmarcoding.github.io/io/">Myanmar Coding</a> - Kestin Han</p>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.key === 's' || event.key === 'S')) {
+                event.preventDefault();
+            }
+            if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
