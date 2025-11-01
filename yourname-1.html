@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name</title>
+    <link rel="icon" href="logo.png" type="image/x-icon"/>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .deuif {
+            margin-left: 20px;
+        }
+
+        .season {
+            margin-top: -10px;
+        }
+
+        .video {
+            display: block;
+            max-width: 100%;
+        }
+
+        .the_one {
+            background-color: red;
+            color: whitesmoke;
+            border: none;
+            width: 90px;
+            height: 30px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .button {
+            background-color: black;
+            color: whitesmoke;
+            border-color: white;
+            width: 90px;
+            height: 30px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .km {
+            text-align: right;
+        }
+
+        .we {
+            margin-top: -15px;
+            color: red;
+        }
+
+        body::-webkit-scrollbar {
+    display: none; 
+}
+
+        .fr {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<a href="home.html"> 
+<div style="text-align: center; margin-top: 30px;">
+<img src="logo.png" alt="Flick Orbit Logo" width="100">
+</div>
+</a>
+<div class="deuif">
+<h1>Your Name - 2016</h1>  
+<h2 class="season">Season 1</h2>
+<div class="video-container">
+    <iframe 
+    src="https://drive.google.com/file/d/1ASbX4STgtduvU4M3lBDK-8PjSFo1RUuP/preview" 
+    width="max-width" 
+    height="max-height" 
+    frameborder="0" 
+    allowfullscreen>
+  </iframe>
+</div>
+<button class="button" onclick="window.location.href='home.html';">Home</button>
+<button class="the_one" onclick="window.location.href='yourname-1.html';">Episode 1</button>
+</div>
+<hr class="fr">
+<div>
+    <h1>Only Trust the Official Website</h1>
+    <h2 class="we">We Appreciate You ❤️</h2>
+    <p>Imagine watching your favorite movies without any interruptions—no annoying ads, no pop-ups, and no distractions. With <strong>Flick Orbit</strong>, we provide you with the ultimate movie-watching experience. Our platform offers a wide selection of high-quality films and shows, all available with seamless streaming. You won’t have to worry about buffering, glitches, or those frustrating moments when you’re forced to skip over ads. Whether you're watching alone, with friends, or with family, Flick Orbit ensures that every movie night is perfect. We believe that watching movies should be a relaxing and enjoyable experience, so we’ve designed our website to give you just that—pure, uninterrupted entertainment. Explore our collection, find your next favorite film, and immerse yourself in cinematic bliss, all at the click of a button. It's time to experience the way movies were meant to be watched—without any hassle, and completely free of charge.</p>
+
+    <h2 class="km">Designed & Developed by Kestin Han - Myanmar Coding</h2>
+    <p>© 2025 Flick Orbit. All Rights Reserved.</p>
+    </div>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+
+
+    <script>
+
+var devtools = false;
+var element = new Image();
+element.__defineGetter__('id', function() {
+  devtools = true;
+  window.location.href = 'about:blank';
+});
+console.log('%c', element);
+
+
+         document.addEventListener('contextmenu', event => event.preventDefault());
+
+         document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.key === 's' || event.key === 'S')) {
+      event.preventDefault();
+    }
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+      event.preventDefault();
+    }
+  });
+
+  (function() {
+  setInterval(() => {
+    debugger;
+  }, 100);
+})();
+
+        function filterMovies() {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+            const movieCards = document.querySelectorAll('.movie-card');
+
+            movieCards.forEach(card => {
+                const title = card.querySelector('h1').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

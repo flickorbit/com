@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Details</title>
+    <link rel="icon" href="logo.png" type="image/x-icon"/>
+    <style>
+        .details-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .details-container img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .details-container p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .details-container .watch-now,
+        .details-container .details-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            transition: background-color 0.3s ease;
+        }
+
+        .details-container .watch-now {
+            background-color: gray;
+            color: whitesmoke;
+        }
+
+        .details-container .watch-now:hover {
+            background-color: #555;
+        }
+
+        .details-container .details-button {
+            background-color: #444;
+            color: whitesmoke;
+        }
+
+        .details-container .details-button:hover {
+            background-color: #666;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .watch-now {
+            text-decoration: none;
+        }
+
+        .details-button {
+            text-decoration: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="details-container">
+        <h1>Your Name - 2016</h1>
+        <img src="yourname_movie_tumbnail.png" alt="Your Name Thumbnail">
+        <p>
+            <strong>Synopsis:</strong> <em>Your Name</em> is a breathtaking anime film that follows the story of two teenagers, Mitsuha and Taki, who mysteriously begin to swap bodies despite living in different places and times. As they navigate this strange connection, they form a deep bond and race against time to uncover the truth behind their intertwined fates.
+        </p>
+        <p>
+            <strong>Genre:</strong> Romance, Fantasy, Drama
+        </p>
+        <p>
+            <strong>Director:</strong> Makoto Shinkai
+        </p>
+        <p>
+            <strong>Rating:</strong> 8.9/10
+        </p>
+        <a href="yourname-1.html" class="watch-now">Watch Now</a>
+        <a href="home.html" class="details-button">Back to Home</a>
+    </div>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+
+
+    <script>
+
+var devtools = false;
+var element = new Image();
+element.__defineGetter__('id', function() {
+  devtools = true;
+  window.location.href = 'about:blank';
+});
+console.log('%c', element);
+
+
+         document.addEventListener('contextmenu', event => event.preventDefault());
+
+         document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.key === 's' || event.key === 'S')) {
+      event.preventDefault();
+    }
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+      event.preventDefault();
+    }
+  });
+
+  (function() {
+  setInterval(() => {
+    debugger;
+  }, 100);
+})();
+
+        function filterMovies() {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+            const movieCards = document.querySelectorAll('.movie-card');
+
+            movieCards.forEach(card => {
+                const title = card.querySelector('h1').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

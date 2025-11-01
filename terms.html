@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Flick Orbit</title>
+    <link rel="icon" href="logo.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff4757;
+            --primary-hover: #ff6b81;
+            --dark-bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-light: #e0e0e0;
+            --text-muted: #aaaaaa;
+            --section-spacing: 3rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-container img {
+            width: 50px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover img {
+            transform: rotate(15deg);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), #ff8a9b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .terms-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 6rem 5% 4rem;
+        }
+
+        .terms-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .terms-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        .terms-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-content {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+        }
+
+        .section-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background-color: #111;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), #ff8a9b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-about {
+            max-width: 300px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-newsletter p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #222;
+            color: white;
+        }
+
+        .newsletter-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-hover);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+
+            .terms-container {
+                padding-top: 8rem;
+            }
+
+            .terms-title {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="mainHeader">
+        <a href="home.html" class="logo-container">
+            <img src="logo.png" alt="Flick Orbit Logo">
+            <span class="logo-text">Flick Orbit</span>
+        </a>
+        <nav class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="new.html">New Releases</a>
+            <a href="favorites.html">My Movies</a>
+        </nav>
+    </header>
+
+    <main class="terms-container">
+        <h1 class="terms-title">Terms of Service</h1>
+        
+        <div class="terms-section">
+            <h2 class="section-title">1. Free Service</h2>
+            <div class="section-content">
+                <p>Flick Orbit is a completely free streaming service supported by advertisements. By using our service, you agree to view advertisements as part of your experience.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2 class="section-title">2. Account Registration</h2>
+            <div class="section-content">
+                <p>Optional account registration allows us to:</p>
+                <ul>
+                    <li>Save your watch history and preferences</li>
+                    <li>Provide personalized recommendations</li>
+                    <li>Maintain your favorites list</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2 class="section-title">3. Ad-Supported Content</h2>
+            <div class="section-content">
+                <p>You agree that:</p>
+                <ul>
+                    <li>All content is provided with advertisements</li>
+                    <li>We may display both video and banner ads</li>
+                    <li>Ad frequency and placement may vary</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2 class="section-title">4. Contact Information</h2>
+            <div class="section-content">
+                <p>If you have any questions about these Terms, please contact us:</p>
+                <ul>
+                    <li>By email: flickorbitmovie@gmail.com</li>
+                    <li>By visiting our contact page</li>
+                </ul>
+                <p><strong>Effective Date:</strong> January 1, 2026</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="footer-logo">Flick Orbit</div>
+                <p>Your premier destination for unlimited movie streaming. Watch what you love, when you want, without any interruptions.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="new.html">New Releases</a></li>
+                    <li><a href="favorites.html">My List</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Information</h3>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Flick Orbit. All Rights Reserved.</p>
+            <p>Designed & Developed by <a href="https://myanmarcoding.github.io/io/">Myanmar Coding</a> - Kestin Han</p>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.key === 's' || event.key === 'S')) {
+                event.preventDefault();
+            }
+            if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

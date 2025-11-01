@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Note Book | Flick Orbit</title>
+    <link rel="icon" href="logo.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff4757;
+            --primary-hover: #ff6b81;
+            --dark-bg: #0f0f0f;
+            --text-light: #e0e0e0;
+            --text-muted: #aaaaaa;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            margin: 0;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-center {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .logo-center img {
+            width: 100px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-center img:hover {
+            transform: scale(1.1);
+        }
+
+        .movie-header {
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+
+        .movie-title {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .movie-year {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .video-container {
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        video {
+            width: 100%;
+            display: block;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0 40px;
+            padding: 0 20px;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        hr.divider {
+            border: none;
+            height: 1px;
+            background-color: #333;
+            margin: 40px 0;
+        }
+
+        .trust-section {
+            padding: 0 20px;
+            margin-bottom: 40px;
+        }
+
+        .trust-section h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .trust-section h2 {
+            color: var(--primary);
+            margin-top: -5px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .trust-section p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        .footer {
+            text-align: right;
+            padding: 0 20px 30px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .movie-title {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html">
+        <div class="logo-center">
+            <img src="logo.png" alt="Flick Orbit Logo">
+        </div>
+    </a>
+    
+    <div class="container">
+        <div class="movie-header">
+            <h1 class="movie-title">The Note Book</h1>
+            <p class="movie-year">2004 ‧ Romance/Comedy</p>
+        </div>
+        
+        <div class="video-container">
+            <iframe 
+            src="https://drive.google.com/file/d/1lvk-tFs-VWTwwBiA4LEora3vdT4fUZJM/preview" 
+            width="max-width" 
+            height="max-height" 
+            frameborder="0" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        
+        <div class="button-group">
+            <button class="btn btn-outline" onclick="window.location.href='home.html';">
+                <i class="fas fa-home"></i> Home
+            </button>
+            <button class="btn btn-primary" onclick="window.location.href='thenotebook.html';">
+                <i class="fas fa-play"></i> Episode 1
+            </button>
+        </div>
+        
+        <hr class="divider">
+        
+        <div class="trust-section">
+            <h1>Only Trust the Official Website</h1>
+            <h2>We Appreciate You ❤️</h2>
+            <p>
+                Imagine watching your favorite movies without any interruptions—no annoying ads, no pop-ups, and no distractions. With <strong>Flick Orbit</strong>, we provide you with the ultimate movie-watching experience. Our platform offers a wide selection of high-quality films and shows, all available with seamless streaming. You won't have to worry about buffering, glitches, or those frustrating moments when you're forced to skip over ads. Whether you're watching alone, with friends, or with family, Flick Orbit ensures that every movie night is perfect. We believe that watching movies should be a relaxing and enjoyable experience, so we've designed our website to give you just that—pure, uninterrupted entertainment. Explore our collection, find your next favorite film, and immerse yourself in cinematic bliss, all at the click of a button. It's time to experience the way movies were meant to be watched—without any hassle, and completely free of charge.
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>Designed & Developed by Kestin Han - Myanmar Coding</p>
+            <p>© 2025 Flick Orbit. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+
+    <script>
+        var devtools = false;
+        var element = new Image();
+        element.__defineGetter__('id', function() {
+            devtools = true;
+            window.location.href = 'about:blank';
+        });
+        console.log('%c', element);
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.key === 's' || event.key === 'S')) {
+                event.preventDefault();
+            }
+            if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+                event.preventDefault();
+            }
+        });
+
+        (function() {
+            setInterval(() => {
+                debugger;
+            }, 100);
+        })();
+    </script>
+</body>
+</html>

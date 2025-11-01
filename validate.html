@@ -1,0 +1,31 @@
+<?php
+// 1. Define valid passwords + expirations (store securely in production)
+$valid_passwords = [
+    "flickorbitadmin" => "9999-07-31",  // Never expires
+    "FlickSecure"    => "2024-07-15",   // Expires July 15, 2024
+    // Add more passwords here
+];
+
+// 2. Get user input
+$input = $_POST['password'];
+
+// 3. Check if password exists and is not expired
+if (isset($valid_passwords[$input])) {
+    $expiry_date = new DateTime($valid_passwords[$input]);
+    $today = new DateTime();
+    
+    if ($today <= $expiry_date) {
+        // 4. Start session + store auth status
+        session_start();
+        $_SESSION['authenticated'] = true;
+        header("Location: v.html"); // Redirect to protected content
+        exit();
+    } else {
+        header("Location: index.php?error=ERROR: Password expired");
+        exit();
+    }
+} else {
+    header("Location: index.php?error=ERROR: Invalid access code");
+    exit();
+}
+?>
